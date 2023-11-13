@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pompiere&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <title>Account | Bun Appetit</title>
+
+    <style>
+      /*Navigation bar SECTION*/
+      .navbar {
+        margin-bottom: 0;
+        background-color: #ffffff;
+        z-index: 9999;
+        border: 0;
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+        font-family: Montserrat, sans-serif;
+      }
+      .navbar li a, .navbar .navbar-brand {
+        color: #000000 !important;
+      }
+      .navbar-nav li a:hover, .navbar-nav li.active a {
+        color: #020202 !important;
+        background-color: #FCEEBE !important;
+      }
+      .navbar-default .navbar-toggle {
+        border-color: transparent;
+        color: #FCEEBE !important;
+      }
+      .icon-bar{
+        background-color: #FCEEBE;
+      }
+      .navbar-scrolled{
+        background-color: #5B3C32;
+      }
+
+      .jumbotron {
+        background-color: #5B3C32;
+        color: #FCEEBE;
+        padding: 100px 25px;
+        height: 800px;
+        margin-bottom: 0%;
+        font-family: Montserrat, sans-serif;
+        background-image: url('/Project/images/home-image.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: brightness(0.7);
+      }
+
+      /*Containers SECTION*/
+      .container-fluid {
+        background-color: beige;
+        padding: 60px 50px;
+        font-size: medium;
+      }
+      .bg-grey {
+        background-color: rgb(248, 248, 231);
+      }
+
+      /*Headings*/
+      h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+      h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        color: #303030;
+        font-weight: 400;
+        margin-bottom: 30px;
+      }
+
+      /*Back button css*/
+      .btn-back{
+        margin-right: 20px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: #FCEEBE;
+        background-color: #5B3C32;
+        border: 1px solid #5B3C32;
+        border-radius: 50px;
+        height: 50px;
+        width: 50px;
+      }
+      .btn-back:hover{
+        background-color: #FCEEBE;
+        color: #5B3C32;
+        border: 1px solid #5B3C32;
+      }
+      .page-title{
+        display: inline-block;
+      }
+      
+      /*Product css*/
+      .p-image .card{
+        width: 80%;
+        box-shadow: 0 10px 20px rgb(0, 0, 0, 0.3);
+        border-radius: 5px;
+        padding: 5px;
+        margin: auto;
+        margin-bottom: 50px;
+      }
+      .p-image .card img{
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+      }
+      .p-description .description{
+        text-align: justify;
+      }
+      .p-description .price{
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      /*add-to-cart-btn css*/
+      .add-to-cart button{
+        font-size: 13px;
+        font-weight: 600;
+        color: #FCEEBE;
+        background-color: #5B3C32;
+        border: 1px solid #5B3C32;
+        height: 50px;
+        width: 150px;
+        transition: .2s;
+      }
+      .add-to-cart button:hover{
+        color: #5B3C32;
+        background-color: #FCEEBE;
+        border: 1px solid #5B3C32;
+      }
+
+      /*plus-minus-btn css*/
+      .plus-minus-input .input-group-field {
+        text-align: center;
+        width: 85px;
+      }
+
+      .input-group-button{
+        display: inline-block;  
+      }
+
+
+      .header{
+        text-align: center;
+      }
+      .wrapper{
+        position: relative;
+        width: 400px;
+        height: 440px;
+        border: 2px solid #5B3C32;
+        border-radius: 20px;
+        background-color: #FCEEBE;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px (0, 0, 0, .5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        transition: transform .5s ease height .2s ease;
+      }
+      .wrapper.active{
+        height: 520px;
+      }
+      .wrapper .form-box{
+        width: 100%;
+        padding: 40px;
+      }
+      .wrapper .form-box.login{
+        transition: transform .18s ease;
+        transform: translateX(0);
+      }
+      .wrapper.active .form-box.login{
+        transition: none;
+        transform: translateX(-400px);
+      }
+      .wrapper .form-box.register{
+        position: absolute;
+        transition: none;
+        transform: translateX(400px);
+      }
+      .wrapper.active .form-box.register{
+        transition: transform .18s ease;
+        transform: translateX(0);
+      }
+      
+      .input-box{
+        position: relative;
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid #5B3C32;
+        margin: 30px 0;
+      }
+      .input-box label{
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        font-size: 500;
+        pointer-events: none;
+        transition: .5s;
+      }
+      .input-box input:focus~label,
+      .input-box input:valid~label{
+        top: -5px;
+      }
+      .input-box input{
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+      }
+      .input-box .icon{
+        position: absolute;
+        right: 8px;
+        font-size: 1.2em;
+        line-height: 57px;
+      }
+      .remember-forgot{
+        font-size: .9em;
+        color: #5B3C32;
+        font-weight: 500;
+        margin: -15px 0 15px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .remember-forgot label input{
+        accent-color: #5B3C32;
+        margin-right: 3px;
+      }
+      .remember-forgot a{
+        color: #5B3C32;
+      }
+      .remember-forgot a:hover{
+        text-decoration: underline;
+      }
+      .btn{
+        width: 100%;
+        height: 45px;
+        background-color: #5B3C32;
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1em;
+        color: rgb(248, 248, 231);
+        font-weight: 500;
+      }
+      .btn:hover{
+        background-color: rgb(248, 248, 231);
+        outline: 1px solid #5B3C32;
+      }
+      .login-register{
+        font-size: .9em;
+        color:#5B3C32;
+        text-align: center;
+        font-weight: 500;
+        margin: 25px 0 10px;
+      }
+      .login-register p a{
+        color: #5B3C32;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .login-register p a:hover{
+        text-decoration: underline;
+      }
+      
+    </style>
+  </head>
+
+  <body id="homePage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <!-- Container (Navigation bar Section) -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>         
+          </button>
+          <a class="navbar-brand" href="#homePage">EL MUSEO</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/WebSysDev Project/index.html">HOME</a></li>
+            <li><a href="/WebSysDev Project/index.html">ABOUT</a></li>
+            <li><a href="/WebSysDev Project/index.html">EXHIBITIONS</a></li>
+            <li><a href="/WebSysDev Project/index.html">STUDIO</a></li>
+            <li><a href="/WebSysDev Project/index.html">CONTACTS</a></li>
+            <li><a href="/WebSysDev Project/index.html"><i class="bi bi-person"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="account" class="container-fluid">
+      <div class="row"><br>
+        <div class="col-sm-12">
+          <button class="btn-back" onclick="history.back()"><i class="bi bi-arrow-left"></i></button>
+          <div class="page-title"><h2>Account</h2></div>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <div class="wrapper">
+            <div class="form-box login">
+              <h2 class="header">Login</h2>
+              <form action="#">
+                <div class="input-box">
+                  <span class="icon"><i class="bi bi-envelope-fill"></i></span>
+                  <input type="email" required>
+                  <label>Email</label>
+                </div>
+                <div class="input-box">
+                  <span class="icon"><i class="bi bi-lock-fill"></i></span>
+                  <input type="password" required>
+                  <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                  <label><input type="checkbox">
+                    Remember me
+                  </label>
+                  <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                  <p>
+                    Don't have an account?
+                    <a href="#" class="register-link">Sign Up</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+  
+            <div class="form-box register">
+              <h2 class="header">Sign Up</h2>
+              <form action="#">
+                <div class="input-box">
+                  <span class="icon"><i class="bi bi-person-fill"></i></i></span>
+                  <input type="text" required>
+                  <label>Username</label>
+                </div>
+                <div class="input-box">
+                  <span class="icon"><i class="bi bi-envelope-fill"></i></span>
+                  <input type="email" required>
+                  <label>Email</label>
+                </div>
+                <div class="input-box">
+                  <span class="icon"><i class="bi bi-lock-fill"></i></span>
+                  <input type="password" required>
+                  <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                  <label><input type="checkbox">
+                    I agree to the terms & conditions
+                  </label>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="login-register">
+                  <p>
+                    Already have an account?
+                    <a href="#" class="login-link">Login</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+    </div>
+
+    <!-- Container (Footer Section) -->
+    <footer class="container-fluid text-center bg-grey">
+      <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+      
+
+      <p>&#169 EL MUSEO. All rights reserved.</p>
+    </footer>
+
+    
+    <script>
+      $(document).ready(function(){
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+          // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+      
+            // Store hash
+            var hash = this.hash;
+      
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 900, function(){
+         
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+            });
+          } // End if
+        });
+        
+        $(window).scroll(function() {
+          $(".slideanim").each(function(){
+            var pos = $(this).offset().top;
+      
+            var winTop = $(window).scrollTop();
+              if (pos < winTop + 600) {
+                $(this).addClass("slide");
+              }
+          });
+        });
+      })
+
+      const wrapper = document.querySelector('.wrapper');
+      const loginLink = document.querySelector('.login-link');
+      const registerLink = document.querySelector('.register-link');
+
+      registerLink.addEventListener('click', ()=> {
+        wrapper.classList.add('active');
+      });
+
+      loginLink.addEventListener('click', ()=> {
+        wrapper.classList.remove('active');
+      });
+      
+      </script>
+  </body>
+</html>
